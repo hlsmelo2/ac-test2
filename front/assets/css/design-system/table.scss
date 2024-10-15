@@ -1,0 +1,14 @@
+table {
+    width: 100%;
+    border: none;
+    border-collapse: collapse;
+
+    th, td { padding: 10px; }
+
+    th {
+        background-color: #e3e3e3;
+        padding: 20px 10px;
+    }
+
+    tbody tr:nth-child(odd) { background-color: #f5f5f5; }
+}

@@ -1,0 +1,11 @@
+label, input { display: inline-block; }
+label + input { margin-bottom: 10px; }
+label { width: 40%; }
+
+
+
+input, select {
+    height: 30px;
+    width: 58%;
+    font-size: 18px;
+}

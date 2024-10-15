@@ -1,0 +1,27 @@
+div#transfers {
+    .main-buttons {
+        display: flex;
+        justify-content: right;
+        margin-bottom: 20px;
+
+        a.make-deposit, a.send-transfer { padding: 10px 20px; }
+        a.make-deposit { margin-right: 10px; }
+    }
+
+    div.filters {
+        clear: right;
+        margin-bottom: 20px;
+
+        a {
+            padding: 5px 10px;
+            background-color: #a6efec;
+            border-radius: 4px;
+            margin-right: 10px;
+
+            &.active {
+                color: #fff;
+                background-color: #000;
+            }
+        }
+    }
+}

@@ -1,0 +1,9 @@
+div#users {
+    a {
+        padding: 0px 20px;
+        position: relative;
+        bottom: 10px;
+
+        &.details { margin-right: 10px; }
+    }
+}

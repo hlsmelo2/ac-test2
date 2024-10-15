@@ -1,0 +1,30 @@
+#logo {
+    width: 300px;
+    margin: 0 auto;
+
+    img { width: 100%; }
+}
+
+header {
+    padding-top: 40px;
+
+    #logo { margin-bottom: 60px; }
+
+    nav#main-menu, div#greeting {
+        text-align: center;
+    }
+}
+
+div#balance {
+    margin-bottom: 20px;
+
+    label {
+        width: auto;
+        margin-right: 10px;
+    }
+
+    span {
+        font-size: 30px;
+        font-weight: 600;
+    }
+}
