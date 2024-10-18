@@ -24,10 +24,12 @@ export default {
                 const self = this;
                 self.messages.errors.push(message);
 
-                window.onclick = function () {
-                    self.messages.errors = [];
-                    window.onclick = null;
-                };
+                setTimeout(() => {
+                    window.onclick = function () {
+                        self.messages.errors = [];
+                        window.onclick = null;
+                    };
+                }, 500);
             },
         };
     },

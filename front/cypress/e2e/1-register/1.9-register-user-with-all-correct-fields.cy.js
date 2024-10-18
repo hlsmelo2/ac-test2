@@ -8,9 +8,10 @@ describe('Register user with wrong rePassword', () => {
 
   it('Fill all correct fields and try register', () => {
     appActions.register.fillName(commands.getUserName());
-    appActions.register.fillEmail(commands.env().adminLogin);
+    appActions.register.fillEmail(commands.getNewEmail());
     appActions.register.fillPassword(commands.env().defaultPassword);
     appActions.register.fillRePassword(commands.env().defaultPassword);
     appActions.register.buttonClick();
+    appActions.login.checkPage();
   });
 });

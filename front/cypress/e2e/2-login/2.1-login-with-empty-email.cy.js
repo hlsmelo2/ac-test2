@@ -10,6 +10,7 @@ describe('Login user with empty email', () => {
   it('Fill password and try login', () => {
     appActions.login.fillPassword(commands.env().adminLogin);
     appActions.login.buttonClick();
+    appActions.app.checkAlertMessage('Error to try login');
   });
 
 });

@@ -11,6 +11,7 @@ describe('Login user with empty email', () => {
     appActions.login.fillEmail(commands.env().adminLogin);
     appActions.login.fillPassword('WRONG');
     appActions.login.buttonClick();
+    appActions.app.checkAlertMessage('Error to try login');
   });
 
 });

@@ -1,5 +1,6 @@
 <template lang="pug">
 div#login.main-wrapper
+    AlertsComponent(ref="alerts")
     h1 Login
     div
         label Email
@@ -12,6 +13,8 @@ div#login.main-wrapper
 </template>
 
 <script lang="ts">
+import axios from 'axios';
+
 
 export default {
     setup () {
@@ -44,6 +47,7 @@ export default {
             });
 
             if (loginData.data.done === false) {
+                (<any>this.$refs).alerts.addError('Error to try login');
                 return;
             }
 

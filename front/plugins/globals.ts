@@ -19,6 +19,15 @@ export default defineNuxtPlugin({
             init() {
                 axios.defaults.baseURL = useRuntimeConfig().public.API_BASE || 'http://localhost:3000';
                 axios.defaults.headers.common['Accept'] = 'application/json';
+
+                axios.interceptors.response.use(
+                    response => response,
+                    error => ({
+                        data: { done: false },
+                        error,
+                    }),
+                );
+
                 this.addAuthorization();
             },
             addAuthorization(token: string | undefined = undefined) {

@@ -11,6 +11,7 @@ describe('Login user with wrong email', () => {
     appActions.login.fillEmail('WRONG');
     appActions.login.fillPassword(commands.env().defaultPassword);
     appActions.login.buttonClick();
+    appActions.app.checkAlertMessage('Error to try login');
   });
 
 });

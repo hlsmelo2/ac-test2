@@ -11,6 +11,7 @@ describe('Login with correct credentials', () => {
     appActions.login.fillEmail(commands.env().adminLogin);
     appActions.login.fillPassword(commands.env().defaultPassword);
     appActions.login.buttonClick();
+    appActions.transfers.checkPage();
   });
 
 });

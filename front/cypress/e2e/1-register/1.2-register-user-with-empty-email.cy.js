@@ -11,5 +11,6 @@ describe('Register user with empty email', () => {
     appActions.register.fillPassword(commands.env().defaultPassword);
     appActions.register.fillRePassword(commands.env().defaultPassword);
     appActions.register.buttonClick();
+    appActions.app.checkAlertMessage('Error to try register');
   });
 });

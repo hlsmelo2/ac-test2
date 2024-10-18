@@ -1,6 +1,11 @@
 import { commands } from "../../commands";
 
 export const appElements = {
+    app: {
+        alert() {
+            return commands.get('div.alert');
+        },
+    },
     register: {
         menuItem() {
             return commands.get('#main-menu a').contains('Register');

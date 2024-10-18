@@ -1,5 +1,6 @@
 <template lang="pug">
 div#register.main-wrapper
+    AlertsComponent(ref="alerts")
     h1 Cadastrar usuário
     div
         label Name
@@ -17,7 +18,7 @@ div#register.main-wrapper
         button(@click="register()") Register
 </template>
 
-<script>
+<script lang="ts">
 
 export default {
     setup () {
@@ -36,14 +37,17 @@ export default {
     methods: {
         async register() {
             if (this.input.password !== this.input.rePassword) {
-                throw 'Error';
+                (<any>this.$refs).alerts.addError('The password fields should have the same value');
+
+                return;
             }
 
-            const { $requester } = useNuxtApp();
             const url = 'users';
-            const { data } = await $requester.post(url, this.input);
+            const { data } = await helpers.getRequester().post(url, this.input);
 
-            if (!data.done) {
+            if (data.done === false) {
+                (<any>this.$refs).alerts.addError('Error to try register');
+
                 return;
             }
 
