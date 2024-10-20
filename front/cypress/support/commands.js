@@ -50,3 +50,11 @@ export const commands = {
         return this.env().defaultPassword;
     },
 }
+
+Cypress.Commands.overwrite('type', (source, input, value) => {
+    if (value === '') {
+        return false;
+    }
+
+    return source(input, value);
+});

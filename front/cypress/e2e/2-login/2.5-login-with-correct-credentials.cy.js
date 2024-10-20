@@ -1,17 +1,15 @@
+import { Login } from "/cypress/support/system/app/tests/login";
 import { commands } from "/cypress/support/commands";
-import { appActions } from "/cypress/support/system/app/actions";
 
-describe('Login with correct credentials', () => {
-
-  beforeEach(() => {
-    appActions.app.gotoLogin();
-  });
-
-  it('Fill correct credentials and try login', () => {
-    appActions.login.fillEmail(commands.env().adminLogin);
-    appActions.login.fillPassword(commands.env().defaultPassword);
-    appActions.login.buttonClick();
-    appActions.transfers.checkPage();
-  });
-
+const login = new Login({
+    messages: {
+        describe: 'Login with correct credentials',
+        itLogin: 'Fill correct credentials and try login',
+        alert: '',
+    },
+    data: {
+        email: commands.env().adminLogin,
+        password: commands.env().defaultPassword,
+        checkTransfersPage: true,
+    },
 });

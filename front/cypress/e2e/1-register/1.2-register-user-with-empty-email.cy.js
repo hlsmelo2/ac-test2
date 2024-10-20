@@ -1,16 +1,17 @@
+import { Register } from "/cypress/support/system/app/tests/register";
 import { commands } from "/cypress/support/commands";
-import { appActions } from "/cypress/support/system/app/actions";
 
-describe('Register user with empty email', () => {
-  beforeEach(() => {
-    appActions.app.gotoRegister();
-  });
-
-  it('Fill name and password and try register', () => {
-    appActions.register.fillName(commands.getUserName());
-    appActions.register.fillPassword(commands.env().defaultPassword);
-    appActions.register.fillRePassword(commands.env().defaultPassword);
-    appActions.register.buttonClick();
-    appActions.app.checkAlertMessage('Error to try register');
-  });
+const register = new Register({
+    messages: {
+        describe: 'Register user with empty email',
+        itRegister: 'Fill name and password and try register',
+        alert: 'Error to try register',
+    },
+    data: {
+        name: commands.getUserName(),
+        email: '',
+        password: commands.env().defaultPassword,
+        rePassword: commands.env().defaultPassword,
+        checkLoginPage: false,
+    },
 });

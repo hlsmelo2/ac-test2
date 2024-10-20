@@ -1,16 +1,15 @@
+import { Login } from "/cypress/support/system/app/tests/login";
 import { commands } from "/cypress/support/commands";
-import { appActions } from "/cypress/support/system/app/actions";
 
-describe('Login user with empty password', () => {
-
-  beforeEach(() => {
-    appActions.app.gotoLogin();
-  });
-
-  it('Fill email and try login', () => {
-    appActions.login.fillEmail(commands.env().adminLogin);
-    appActions.login.buttonClick();
-    appActions.app.checkAlertMessage('Error to try login');
-  });
-
+const login = new Login({
+    messages: {
+        describe: 'Login user with empty password',
+        itLogin: 'Fill email and try login',
+        alert: 'Error to try login',
+    },
+    data: {
+        email: commands.env().adminLogin,
+        password: '',
+        checkTransfersPage: false,
+    },
 });

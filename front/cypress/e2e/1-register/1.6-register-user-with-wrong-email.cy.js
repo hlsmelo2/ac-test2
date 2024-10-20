@@ -1,17 +1,17 @@
+import { Register } from "/cypress/support/system/app/tests/register";
 import { commands } from "/cypress/support/commands";
-import { appActions } from "/cypress/support/system/app/actions";
 
-describe('Register user with wrong email', () => {
-  beforeEach(() => {
-    appActions.app.gotoRegister();
-  });
-
-  it('Fill correct fields except email and try register', () => {
-    appActions.register.fillName(commands.getUserName());
-    appActions.register.fillEmail('WRONG');
-    appActions.register.fillPassword(commands.env().defaultPassword);
-    appActions.register.fillRePassword(commands.env().defaultPassword);
-    appActions.register.buttonClick();
-    appActions.app.checkAlertMessage('Error to try register');
-  });
+const register = new Register({
+    messages: {
+        describe: 'Register user with wrong email',
+        itRegister: 'Fill correct fields except email and try register',
+        alert: 'Error to try register',
+    },
+    data: {
+        name: commands.getUserName(),
+        email: 'WRONG',
+        password: commands.env().defaultPassword,
+        rePassword: commands.env().defaultPassword,
+        checkLoginPage: false,
+    },
 });

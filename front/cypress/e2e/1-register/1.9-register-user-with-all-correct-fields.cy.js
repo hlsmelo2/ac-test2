@@ -1,17 +1,17 @@
+import { Register } from "/cypress/support/system/app/tests/register";
 import { commands } from "/cypress/support/commands";
-import { appActions } from "/cypress/support/system/app/actions";
 
-describe('Register user with wrong rePassword', () => {
-  beforeEach(() => {
-    appActions.app.gotoRegister();
-  });
-
-  it('Fill all correct fields and try register', () => {
-    appActions.register.fillName(commands.getUserName());
-    appActions.register.fillEmail(commands.getNewEmail());
-    appActions.register.fillPassword(commands.env().defaultPassword);
-    appActions.register.fillRePassword(commands.env().defaultPassword);
-    appActions.register.buttonClick();
-    appActions.login.checkPage();
-  });
+const register = new Register({
+    messages: {
+        describe: 'Register user with all correct fields',
+        itRegister: 'Fill all correct fields and try register',
+        alert: '',
+    },
+    data: {
+        name: commands.getUserName(),
+        email: commands.getNewEmail(),
+        password: commands.env().defaultPassword,
+        rePassword: commands.env().defaultPassword,
+        checkLoginPage: true,
+    },
 });

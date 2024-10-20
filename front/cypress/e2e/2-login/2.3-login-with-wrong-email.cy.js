@@ -1,17 +1,16 @@
+import { Login } from "/cypress/support/system/app/tests/login";
 import { commands } from "/cypress/support/commands";
-import { appActions } from "/cypress/support/system/app/actions";
 
-describe('Login user with wrong email', () => {
+const login = new Login({
+    messages: {
 
-  beforeEach(() => {
-    appActions.app.gotoLogin();
-  });
-
-  it('Fill wrong email and try login', () => {
-    appActions.login.fillEmail('WRONG');
-    appActions.login.fillPassword(commands.env().defaultPassword);
-    appActions.login.buttonClick();
-    appActions.app.checkAlertMessage('Error to try login');
-  });
-
+        describe: 'Login user with wrong email',
+        itLogin: 'Fill wrong email and try login',
+        alert: 'Error to try login',
+    },
+    data: {
+        email: 'WRONG',
+        password: commands.env().defaultPassword,
+        checkTransfersPage: false,
+    },
 });
