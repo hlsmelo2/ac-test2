@@ -12,16 +12,21 @@ header
 export default {
     setup () {
         return {
-            user: useNuxtApp().$currentUser.getProfile(),
         }
     },
     props: ['menuItems'],
     methods: {
+        getUser() {
+            return useNuxtApp().$currentUser.getProfile();
+        },
+        isLogged() {
+            return [undefined, null].indexOf(this.getUser()) === -1;
+        },
         getHello() {
-            return this.user === undefined ? '' : `Hello ${this.user.name}`;
+            return !this.isLogged() ? '' : `Hello ${this.getUser().name}`;
         },
         getMenuItems() {
-            const authMenuKey = this.user === undefined ? 'login' : 'logout';
+            const authMenuKey = !this.isLogged() ? 'login' : 'logout';
 
             return [this.menuItems.auth[authMenuKey]]
                 .concat(this.menuItems.defaults);

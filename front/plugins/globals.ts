@@ -3,9 +3,11 @@ import axios from 'axios';
 export default defineNuxtPlugin({
     name: 'globals',
     setup () {
+        const profileCookies = useCookie('profile');
+
         const currentUser = {
             getProfile(property: string = '') {
-                const profile = useCookie('profile').value;
+                const profile = profileCookies.value;
 
                 if (property === '') {
                     return profile;
@@ -31,7 +33,7 @@ export default defineNuxtPlugin({
                 this.addAuthorization();
             },
             addAuthorization(token: string | undefined = undefined) {
-                const profile = useCookie('profile').value ?? { token };
+                const profile = profileCookies.value ?? { token };
 
                 if (profile === undefined) {
                     return;

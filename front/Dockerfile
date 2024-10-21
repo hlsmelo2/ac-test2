@@ -1,5 +1,5 @@
 FROM node:20.9.0
-WORKDIR /var/www/html
+WORKDIR /www
 COPY . .
 RUN cp .env.example .env
 RUN yarn install

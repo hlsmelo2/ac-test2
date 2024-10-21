@@ -28,10 +28,16 @@ class Handler extends ExceptionHandler
         });
 
         $this->renderable(function (Throwable $e) {
-            return response([
+            $data = [
                 'done' => false,
                 'message' => $e->getMessage(),
-            ], 401);
+            ];
+
+            if (isset($_GET['debug'])) {
+                $data[] = $e->getTrace();
+            }
+
+            return response($data, 401);
         });
     }
 }

@@ -32,7 +32,7 @@ foreach ($crud_routes as $route => $controller) {
         Route::get('/{id}', [$controller, 'get']);
         Route::put('/{id}', [$controller, 'update']);
         Route::delete('/{id}', [$controller, 'delete']);
-    })->middleware(['auth:sanctum']);
+    });
 }
 
 Route::post('/users', [UserController::class, 'add'])->withoutMiddleware('auth:sanctum');

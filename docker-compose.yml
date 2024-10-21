@@ -31,30 +31,35 @@ services:
     restart: always
     networks:
       - default
-  front:
-    build: ./front
-    image: acobuccio_front
-    ports:
-      - '3000:3000'
-    restart: always
-    volumes: ['./front:/var/www/html']
-    networks:
-      - default
   back:
     depends_on:
       - db
     build: ./back
     image: acobuccio_back
+    container_name: acobuccio_back
     ports:
       - '8000:8000'
     restart: always
-    volumes: ['./back:/var/www/html']
     environment:
       DB_HOST: db
       DB_PORT: 3306
       DB_DATABASE: acobuccio
       DB_USERNAME: acobuccio
       DB_PASSWORD: acobuccio
+    networks:
+      - default
+  front:
+    depends_on:
+      - back
+    build: ./front
+    image: acobuccio_front
+    container_name: acobuccio_front
+    ports:
+      - '3000:3000'
+    restart: always
+    environment:
+      API_BASE: http://localhost:8000/api
+      AUTH_COOKIES_EXPIRATION: 20
     networks:
       - default
 networks:
